@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Learning Efficiency Comparison</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .description-table {
+            margin-top: 20px;
+            width: 100%;
+            text-align: left;
+            border-collapse: collapse;
+        }
+        .description-table th, .description-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .description-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Student Learning Efficiency Comparison</h2>
+<canvas id="studentEfficiencyChart" width="800" height="400"></canvas>
+
+<!-- 添加指标说明表格 -->
+<table class="description-table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Indicator</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Average Homework Completion Time (hrs/week)</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Knowledge Mastery (test score)</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Review Time (hrs/week)</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Class Participation (questions/class)</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Question Understanding Speed (hrs/question)</td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    const labelsStudent = [1, 2, 3, 4, 5];  // 横轴仅使用编号
+
+    const dataStudentEfficiency = {
+        labels: labelsStudent,
+        datasets: [
+            {
+                label: 'With GenEdu System',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                data: [5, 85, 3, 10, 1],  // 对应编号的数据
+                borderWidth: 2,
+                fill: false,
+                tension: 0.2
+            },
+            {
+                label: 'Without GenEdu System',
+                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                data: [8, 70, 7, 5, 3],  // 对应编号的数据
+                borderWidth: 2,
+                fill: false,
+                tension: 0.2
+            }
+        ]
+    };
+
+    const configStudentEfficiency = {
+        type: 'line',
+        data: dataStudentEfficiency,
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Time (hrs) or Score (%)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Indicators'
+                    }
+                }
+            }
+        }
+    };
+
+    const studentEfficiencyChart = new Chart(
+        document.getElementById('studentEfficiencyChart'),
+        configStudentEfficiency
+    );
+</script>
+
+
+
+</body></html>

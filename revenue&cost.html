@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Forecast</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Revenue and Cost Forecast</h2>
+<canvas id="revenueCostChart" width="800" height="400"></canvas>
+
+<h2>Net Profit Forecast</h2>
+<canvas id="netProfitChart" width="800" height="400"></canvas>
+
+<script>
+    // Data Preparation
+    const labels = ['Year 1', 'Year 2', 'Year 3'];
+    
+    // Revenue and Cost Data
+    const dataRevenueCost = {
+        labels: labels,
+        datasets: [
+            {
+                label: 'SaaS Subscription Revenue (HKD)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                data: [500000, 1200000, 2000000],
+                borderWidth: 1
+            },
+            {
+                label: 'B2B Partnership Revenue (HKD)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                data: [300000, 900000, 1800000],
+                borderWidth: 1
+            },
+            {
+                label: 'R&D Costs (HKD)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                data: [700000, 800000, 900000],
+                borderWidth: 1
+            },
+            {
+                label: 'Marketing Costs (HKD)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                data: [300000, 500000, 600000],
+                borderWidth: 1
+            },
+            {
+                label: 'Operating Costs (HKD)',
+                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                data: [400000, 600000, 700000],
+                borderWidth: 1
+            }
+        ]
+    };
+
+    // Net Profit Data
+    const dataNetProfit = {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Net Profit (HKD)',
+                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                borderColor: 'rgba(255, 159, 64, 1)',
+                data: [-600000, 200000, 1600000],
+                borderWidth: 1
+            }
+        ]
+    };
+
+    // Config for Revenue and Cost Chart
+    const configRevenueCost = {
+        type: 'bar',
+        data: dataRevenueCost,
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Amount (HKD)'
+                    }
+                }
+            }
+        }
+    };
+
+    // Config for Net Profit Chart
+    const configNetProfit = {
+        type: 'bar',
+        data: dataNetProfit,
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Amount (HKD)'
+                    }
+                }
+            }
+        }
+    };
+
+    // Render Charts
+    const revenueCostChart = new Chart(
+        document.getElementById('revenueCostChart'),
+        configRevenueCost
+    );
+
+    const netProfitChart = new Chart(
+        document.getElementById('netProfitChart'),
+        configNetProfit
+    );
+</script>
+
+
+
+</body></html>
